@@ -1,0 +1,13 @@
+{% extends 'bot/base.html' %}
+{% block Title %}U9 bot{% endblock %}
+{% block Body %}
+
+<span class="colortext"> <b>Bot panel </b><br></span>
+{% if clickboards_list %} <!-- if clickboards_list -->
+<legend>Clickboards:</legend>
+{{ clickboards_list }}
+{% else %}  <!-- if clickboards_list -->
+<span class="colortext"> <b>No clickboards found </b></span>
+{% endif %} <!-- if clickboards_list -->
+
+{% endblock %}
