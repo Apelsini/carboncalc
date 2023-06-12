@@ -1,0 +1,16 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/uby/carboncalc_main/
+    - export BOTTO=/home/uby/carboncalc_main/bot
+    - /bin/cp README.md $DEPLOYPATH
+    - /bin/cp passenger_wsgi.py $DEPLOYPATH
+    - /bin/cp manage.py $DEPLOYPATH
+    - /bin/cp /home/uby/carboncalc/bot/admin.py $BOTTO
+    - /bin/cp /home/uby/carboncalc/bot/apps.py $BOTTO
+    - /bin/cp /home/uby/carboncalc/bot/models.py $BOTTO
+    - /bin/cp /home/uby/carboncalc/bot/tests.py $BOTTO
+    - /bin/cp /home/uby/carboncalc/bot/urls.py $BOTTO
+    - /bin/cp /home/uby/carboncalc/bot/views.py $BOTTO
+    - /bin/cp -r /home/uby/carboncalc/u9botpr/* /home/uby/carboncalc_main/u9botpr/
+    - /bin/cp -r /home/uby/carboncalc/bot/* /home/uby/carboncalc_main/bot/
