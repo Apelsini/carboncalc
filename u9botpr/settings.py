@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-%s0nu*ofw1vn-*nf46nm16p+jasez$abqtekrn*!xir&csq+ab
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['bot.u9.by', '127.0.0.1:8000', 'www.bot.u9.by']
+ALLOWED_HOSTS = ['bot.u9.by', '127.0.0.1:8000', 'www.bot.u9.by', 'carboncalc.u9.by', 'www.carboncalc.u9.by']
 
 
 # Application definition
