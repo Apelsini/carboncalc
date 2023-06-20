@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block Title %}Bot{% endblock %}</title>
-    {% include 'bot/nav.html' %}
+
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css"/>
 
      <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
@@ -32,11 +32,10 @@
 </head>
 <body>
 
-</head>
-<body>
 <div class="vh-100" style="background-image: url('https://u9.by/assets/mainback.jpg'); background-size: cover;">
 {% block Background %}{% endblock %}
 
+     {% include 'bot/nav.html' %}
 
     <div class="container mt-5">
         <div class="row d-flex justify-content-left">
