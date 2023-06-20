@@ -7,32 +7,32 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'bot:add' %}" aria-current="page">Home</a>
+          <a class="nav-link" href="{% url 'admin:index' %}" aria-current="page">Home</a>
         </li>
         {% if request.user.is_staff %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'bot:add' %}">Users</a>
+                <a class="nav-link" href="{% url 'admin:index' %}">Users</a>
             </li>
         {% endif %}
         {% if request.user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'bot:add' %}">New Poll</a>
+                <a class="nav-link" href="{% url 'admin:index' %}">New Poll</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'bot:add' request.user.profile.id %}">Profile</a>
+                <a class="nav-link" href="{% url 'admin:index' request.user.profile.id %}">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'bot:add' %}">Log Out</a>
+                <a class="nav-link" href="{% url 'admin:index' %}">Log Out</a>
             </li>
         {% else %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'bot:add' %}">Log In</a>
+                <a class="nav-link" href="{% url 'admin:index' %}">Log In</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'bot:add' %}">Register</a>
+                <a class="nav-link" href="{% url 'admin:index' %}">Register</a>
             </li>
         {% endif %}
-          <form class="d-flex" action="{% url 'bot:add' %}" method="get">
+          <form class="d-flex" action="{% url 'admin:index' %}" method="get">
             <input type="text" class="form-control me-2" name="query" placeholder="search" value="{{ query }}" />
             <input type="submit" class="btn btn-outline-success" value="Search" />
         </form>
