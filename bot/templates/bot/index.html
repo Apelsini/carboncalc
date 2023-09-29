@@ -51,7 +51,7 @@
     },
   },
 });
-   x_spreadsheet.locale('ru');
+   x_spreadsheet.locale = (lang, message) => locale(lang, message);
 </script>
 <script type="text/javascript" src="https://unpkg.com/x-data-spreadsheet@1.0.20/dist/locale/ru.js"></script>
 
