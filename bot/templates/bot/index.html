@@ -11,7 +11,7 @@
 {% endif %} <!-- if clickboards_list -->
 
  <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
-<div id="myGrid" style="height: 200px; width:500px;" class="ag-theme-alpine"></div>
+<div id="myGrid" style="height: 200px; width:700px;" class="ag-theme-alpine"></div>
 
  <script>
 
@@ -41,6 +41,111 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
  </script>
+
+
+<script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"></script>
+
+<script lang="javascript" src="https://cdn.sheetjs.com/xspreadsheet/xlsxspread.js"></script>
+<!-- x-spreadsheet stylesheet -->
+<link rel="stylesheet" href="https://unpkg.com/x-data-spreadsheet/dist/xspreadsheet.css"/>
+
+
+<b><a href="https://sheetjs.com">SheetJS + x-spreadsheet Demo</a></b>
+
+<div id="drop">Drop a spreadsheet file here to see sheet data</div>
+<input type="file" name="xlfile" id="xlf" /> ... or click here to select a file
+<textarea id="b64data">... or paste a base64-encoding here</textarea>
+
+<p><input type="submit" value="Export to XLSX!" id="xport" onclick="export_xlsx();"></p>
+<div id="htmlout"></div>
+<br />
+<script src="https://unpkg.com/x-data-spreadsheet/dist/xspreadsheet.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/shim.min.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.sheetjs.com/xspreadsheet/xlsxspread.min.js"></script>
+<script>
+/*jshint browser:true */
+/* eslint-env browser */
+/* eslint no-use-before-define:0 */
+/*global Uint8Array, Uint16Array, ArrayBuffer */
+/*global XLSX */
+
+var HTMLOUT = document.getElementById('htmlout');
+var xspr = x_spreadsheet(HTMLOUT);
+HTMLOUT.style.height = (window.innerHeight - 400) + "px";
+HTMLOUT.style.width = (window.innerWidth - 50) + "px";
+
+var process_wb = (function() {
+  var XPORT = document.getElementById('xport');
+
+  return function process_wb(wb) {
+    /* convert to x-spreadsheet form */
+    var data = stox(wb);
+
+    /* update x-spreadsheet */
+    xspr.loadData(data);
+    XPORT.disabled = false;
+
+    if(typeof console !== 'undefined') console.log("output", new Date());
+  };
+})();
+
+var do_file = (function() {
+  return function do_file(files) {
+    var f = files[0];
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      if(typeof console !== 'undefined') console.log("onload", new Date());
+      var data = e.target.result;
+      process_wb(XLSX.read(data));
+    };
+    reader.readAsArrayBuffer(f);
+  };
+})();
+
+(function() {
+  var drop = document.getElementById('drop');
+  if(!drop.addEventListener) return;
+
+  function handleDrop(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    do_file(e.dataTransfer.files);
+  }
+
+  function handleDragover(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'copy';
+  }
+
+  drop.addEventListener('dragenter', handleDragover, false);
+  drop.addEventListener('dragover', handleDragover, false);
+  drop.addEventListener('drop', handleDrop, false);
+})();
+
+(function() {
+  var xlf = document.getElementById('xlf');
+  if(!xlf.addEventListener) return;
+  function handleFile(e) { do_file(e.target.files); }
+  xlf.addEventListener('change', handleFile, false);
+})();
+
+(function() {
+  try {
+    fetch("https://sheetjs.com/pres.numbers")
+      .then(function(res) { return res.arrayBuffer(); })
+      .then(function(ab) { process_wb(XLSX.read(ab)); });
+  } catch(e) {}
+})();
+
+function export_xlsx() {
+  var new_wb = xtos(xspr.getData());
+
+  /* write file and trigger a download */
+  XLSX.writeFile(new_wb, 'sheetjs.xlsx', {});
+}
+</script>
 
 
 {% endblock %}
