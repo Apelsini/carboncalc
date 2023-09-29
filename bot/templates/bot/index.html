@@ -10,96 +10,37 @@
 <span class="colortext"> <b>No items found </b></span>
 {% endif %} <!-- if clickboards_list -->
 
-<link rel="stylesheet" href="https://unpkg.com/x-data-spreadsheet/dist/xspreadsheet.css"/>
-<script src="https://unpkg.com/x-data-spreadsheet/dist/xspreadsheet.js"></script>
-<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/shim.min.js"></script>
-<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
-<script src="https://cdn.sheetjs.com/xspreadsheet/xlsxspread.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+<div id="myGrid" style="height: 200px; width:500px;" class="ag-theme-alpine"></div>
 
+ <script>
 
-<script>
-/*jshint browser:true */
-/* eslint-env browser */
-/* eslint no-use-before-define:0 */
-/*global Uint8Array, Uint16Array, ArrayBuffer */
-/*global XLSX */
+const columnDefs = [
+  { field: "make" },
+  { field: "model" },
+  { field: "price" }
+];
 
-var HTMLOUT = document.getElementById('htmlout');
-var xspr = x_spreadsheet(HTMLOUT);
-HTMLOUT.style.height = (window.innerHeight - 400) + "px";
-HTMLOUT.style.width = (window.innerWidth - 50) + "px";
+// specify the data
+const rowData = [
+  { make: "Toyota", model: "Celica", price: 35000 },
+  { make: "Ford", model: "Mondeo", price: 32000 },
+  { make: "Porsche", model: "Boxster", price: 72000 }
+];
 
-var process_wb = (function() {
-  var XPORT = document.getElementById('xport');
+// let the grid know which columns and what data to use
+const gridOptions = {
+  columnDefs: columnDefs,
+  rowData: rowData
+};
 
-  return function process_wb(wb) {
-    /* convert to x-spreadsheet form */
-    var data = stox(wb);
+// setup the grid after the page has finished loading
+document.addEventListener('DOMContentLoaded', () => {
+  const gridDiv = document.querySelector('#myGrid');
+  new agGrid.Grid(gridDiv, gridOptions);
+});
 
-    /* update x-spreadsheet */
-    xspr.loadData(data);
-    XPORT.disabled = false;
-
-    if(typeof console !== 'undefined') console.log("output", new Date());
-  };
-})();
-
-var do_file = (function() {
-  return function do_file(files) {
-    var f = files[0];
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      if(typeof console !== 'undefined') console.log("onload", new Date());
-      var data = e.target.result;
-      process_wb(XLSX.read(data));
-    };
-    reader.readAsArrayBuffer(f);
-  };
-})();
-
-(function() {
-  var drop = document.getElementById('drop');
-  if(!drop.addEventListener) return;
-
-  function handleDrop(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    do_file(e.dataTransfer.files);
-  }
-
-  function handleDragover(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'copy';
-  }
-
-  drop.addEventListener('dragenter', handleDragover, false);
-  drop.addEventListener('dragover', handleDragover, false);
-  drop.addEventListener('drop', handleDrop, false);
-})();
-
-(function() {
-  var xlf = document.getElementById('xlf');
-  if(!xlf.addEventListener) return;
-  function handleFile(e) { do_file(e.target.files); }
-  xlf.addEventListener('change', handleFile, false);
-})();
-
-(function() {
-  try {
-    fetch("https://sheetjs.com/pres.numbers")
-      .then(function(res) { return res.arrayBuffer(); })
-      .then(function(ab) { process_wb(XLSX.read(ab)); });
-  } catch(e) {}
-})();
-
-function export_xlsx() {
-  var new_wb = xtos(xspr.getData());
-
-  /* write file and trigger a download */
-  XLSX.writeFile(new_wb, 'sheetjs.xlsx', {});
-}
-</script>
+ </script>
 
 
 {% endblock %}
