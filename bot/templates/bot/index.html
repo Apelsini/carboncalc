@@ -55,7 +55,12 @@
 });
 x_spreadsheet.locale('ru-ru');
 
- function load(){
+
+</script>
+
+
+<script>
+  function load(){
       const rows10 = { len: 1000 };
       for (let i = 0; i < 1000; i += 1) {
         rows10[i] = {
@@ -90,11 +95,6 @@ x_spreadsheet.locale('ru-ru');
           }
         }
       };
-</script>
-
-
-<script>
-  
       var xs = x_spreadsheet('#x-spreadsheet-demo', {showToolbar: true, showGrid: true})
         .loadData([{
           freeze: 'B3',
