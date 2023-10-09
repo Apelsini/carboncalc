@@ -11,18 +11,20 @@
 {% endif %} <!-- if clickboards_list -->
 
 
- <link rel="stylesheet" href="https://unpkg.com/x-data-spreadsheet@1.1.5/dist/xspreadsheet.css">
+<link rel="stylesheet" href="https://unpkg.com/x-data-spreadsheet@1.1.5/dist/xspreadsheet.css">
 <script src="https://unpkg.com/x-data-spreadsheet@1.1.5/dist/xspreadsheet.js"></script>
+<script type="text/javascript" src="https://unpkg.com/x-data-spreadsheet@1.0.20/dist/locale/ru-ru.js"></script>
+
 <div class="col-md-12 rounded text-dark bg-light" id="xspreadsheet"></div>
 <script>
    x_spreadsheet('#xspreadsheet', options = {
-  mode: 'edit', // edit | read
+   mode: 'edit', // edit | read
   showToolbar: true,
   showGrid: true,
   showContextmenu: true,
   view: {
-    height: () => 300,
-    width: () => document.documentElement.Width,
+    height: () => document.documentElement.clientHeight,
+    width: () => document.documentElement.clientWidth,
   },
   row: {
     len: 100,
@@ -50,9 +52,9 @@
     },
   },
 });
-
+x_spreadsheet.locale('ru-ru');
 </script>
-<script type="text/javascript" src="https://unpkg.com/x-data-spreadsheet@1.0.20/dist/locale/ru-ru.js"></script>
+
 
 <script>
     function load(){
