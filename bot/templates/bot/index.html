@@ -15,7 +15,7 @@
 <script src="https://unpkg.com/x-data-spreadsheet@1.1.5/dist/xspreadsheet.js"></script>
 <script type="text/javascript" src="https://unpkg.com/x-data-spreadsheet@1.1.5/dist/locale/ru-ru.js"></script>
 
-<div class="col-md-12 horizontal-scrollable rounded text-dark bg-light" id="xspreadsheet"></div>
+<div class="col-md-12 rounded text-dark bg-light" id="xspreadsheet"></div>
 <script>
    x_spreadsheet('#xspreadsheet', options = {
    mode: 'edit', // edit | read
@@ -28,14 +28,14 @@
     width: () => document.documentElement.clientWidth,
   },
   row: {
-    len: 100,
+    len: 30,
     height: 25,
   },
   col: {
-    len: 26,
-    width: 100,
-    indexWidth: 60,
-    minWidth: 60,
+    len: 40,
+    width: 50,
+    indexWidth: 20,
+    minWidth: 20,
   },
   style: {
     bgcolor: '#ffffff',
