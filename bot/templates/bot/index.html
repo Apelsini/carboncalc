@@ -15,7 +15,7 @@
 <script src="https://unpkg.com/x-data-spreadsheet@1.1.5/dist/xspreadsheet.js"></script>
 <script type="text/javascript" src="https://unpkg.com/x-data-spreadsheet@1.1.5/dist/locale/ru-ru.js"></script>
 
-<div class="col-md-12 rounded text-dark bg-light" id="xspreadsheet"></div>
+<div class="col-md-12 horizontal-scrollable rounded text-dark bg-light" id="xspreadsheet"></div>
 <script>
    x_spreadsheet('#xspreadsheet', options = {
    mode: 'edit', // edit | read
@@ -54,13 +54,11 @@
   },
 });
 x_spreadsheet.locale('ru-ru');
-
-
 </script>
 
 
 <script>
-  function load(){
+    function load(){
       const rows10 = { len: 1000 };
       for (let i = 0; i < 1000; i += 1) {
         rows10[i] = {
@@ -95,6 +93,7 @@ x_spreadsheet.locale('ru-ru');
           }
         }
       };
+      // x_spreadsheet.locale('zh-cn');
       var xs = x_spreadsheet('#x-spreadsheet-demo', {showToolbar: true, showGrid: true})
         .loadData([{
           freeze: 'B3',
