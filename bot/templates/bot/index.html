@@ -54,11 +54,8 @@
   },
 });
 x_spreadsheet.locale('ru-ru');
-</script>
 
-
-<script>
-    function load(){
+ function load(){
       const rows10 = { len: 1000 };
       for (let i = 0; i < 1000; i += 1) {
         rows10[i] = {
@@ -93,7 +90,11 @@ x_spreadsheet.locale('ru-ru');
           }
         }
       };
-      // x_spreadsheet.locale('zh-cn');
+</script>
+
+
+<script>
+  
       var xs = x_spreadsheet('#x-spreadsheet-demo', {showToolbar: true, showGrid: true})
         .loadData([{
           freeze: 'B3',
