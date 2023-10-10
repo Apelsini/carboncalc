@@ -24,12 +24,12 @@
    x_spreadsheet('#xspreadsheet', options = {
    mode: 'edit', // edit | read
   showToolbar: false,
-  showBottombar: false,
+  showBottomBar: false,
   showGrid: true,
   showContextmenu: true,
   view: {
     height: () => 300,
-    width: () => document.documentElement.clientWidth-document.documentElement.topLeft*2,
+    width: () => document.documentElement.clientWidth-document.documentElement.topLeft-document.documentElement.topLeft,
   },
   row: {
     len: 30,
