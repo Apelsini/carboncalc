@@ -1,11 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-pip
 from bot.models import AdvancedText
-from django-summernote.admin import SummernoteModelAdmin
-
-# Register your models here.
+from django_summernote.admin import SummernoteModelAdmin
 
 class UserAdmin(BaseUserAdmin):
     # The forms to add and change user instances
