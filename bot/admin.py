@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-
+pip
 from bot.models import AdvancedText
-from django_summernote.admin import SummernoteModelAdmin
+from django-summernote.admin import SummernoteModelAdmin
 
 # Register your models here.
 
