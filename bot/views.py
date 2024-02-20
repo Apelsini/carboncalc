@@ -9,9 +9,6 @@ from django.shortcuts import (get_object_or_404,
                               render,
                               HttpResponseRedirect)
 
-EARTH_RADIUS = 6371.0  #c19cd
-MDB_URL = "mongodb+srv://readonly:readonly@covid-19.hip2i.mongodb.net/covid19" #c19cd source
-
 class IndexView(generic.ListView):    #Class-Based View
     template_name = 'bot/index.html'
     model = Clickboard
