@@ -33,8 +33,6 @@ class UserAdmin(BaseUserAdmin):
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 
-admin.site.register(PackageMeasures)
-
 class AdvancedContentAdmin(SummernoteModelAdmin):  # instead of ModelAdmin
     summernote_fields = ('text',)
 admin.site.register(AdvancedText, AdvancedContentAdmin)
